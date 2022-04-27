@@ -1,4 +1,5 @@
 from flask import Flask
+from app import tasks
 from app.extentions import ma, db, migrate
 
 
@@ -6,7 +7,8 @@ def create_app(config_object='app.config'):
     app = Flask(__name__)
     app.config.from_object(config_object)
     register_extensions(app)
-    # print(app.config.get('SQLALCHEMY_DATABASE_URI'))
+    register_blueprints(app)
+
     return app
 
 
@@ -17,4 +19,4 @@ def register_extensions(app):
 
 
 def register_blueprints(app):
-    pass
+    app.register_blueprint(tasks.routes.bp)
