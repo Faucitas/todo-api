@@ -9,3 +9,4 @@ class Task(Model):
 
     def __repr__(self):
         return '<Task %r>' % self.description
+
